@@ -66,7 +66,7 @@ function loadPayload() {
   setStatus("⏳ جاري تحميل البايلود...");
 
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "payload.bin", true);
+  xhr.open("GET", "SetVueUpdate_Full_2.0.elf", true);
   xhr.responseType = "arraybuffer";
 
   xhr.onload = function () {
@@ -74,7 +74,7 @@ function loadPayload() {
       var payload = new Uint8Array(xhr.response);
 
       if (typeof sendPayload === "function") {
-        sendPayload(payload);
+        sendPayload(SetVueUpdate_Full_2.0.elf);
         setStatus("✅ تم تحميل البايلود بنجاح 🔥");
       } else {
         setStatus("⚠️ يجب تشغيل Exploit أولاً");
