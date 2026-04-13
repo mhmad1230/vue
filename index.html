@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<title>Mohammed Khaled PS4 Host</title>
+
+<style>
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  font-family: Arial;
+  color: white;
+  text-align: center;
+}
+
+.container {
+  margin-top: 200px;
+}
+
+h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+button {
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+  border: none;
+  padding: 20px 40px;
+  font-size: 20px;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px #00c6ff;
+}
+
+#status {
+  margin-top: 30px;
+  font-size: 18px;
+  color: #00ffcc;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+  <h1>محمد خالد للتهكير PS4</h1>
+  <button onclick="loadPayload()">تحميل البايلود</button>
+  <div id="status"></div>
+</div>
+
+<script>
+function setStatus(msg) {
+  document.getElementById("status").innerText = msg;
+}
+
+function loadPayload() {
+  setStatus("⏳ جاري تحميل البايلود...");
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "payload.bin", true);
+  xhr.responseType = "arraybuffer";
+
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      var payload = new Uint8Array(xhr.response);
+
+      if (typeof sendPayload === "function") {
+        sendPayload(payload);
+        setStatus("✅ تم تحميل البايلود بنجاح 🔥");
+      } else {
+        setStatus("⚠️ يجب تشغيل Exploit أولاً");
+      }
+    } else {
+      setStatus("❌ فشل تحميل البايلود");
+    }
+  };
+
+  xhr.onerror = function () {
+    setStatus("❌ خطأ في الاتصال");
+  };
+
+  xhr.send();
+}
+</script>
+
+</body>
+</html>
